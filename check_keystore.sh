@@ -30,15 +30,6 @@ function start {
         exit 1
 	fi
 
-	#echo "Looking for certificates inside the keystore $(basename $KEYSTORE), WARNING: $WARNING_IN_DAYS day(s), CRITICAL: $CRITICAL_IN_DAYS day(s)..."
-
-	#echo | $KEYTOOL -list -v -keystore "$KEYSTORE"  $PASSWORD 2>&1 > /dev/null
-
-	#if [ $? -gt 0 ]; then
-	#	echo "Error opening the keystore."
-	#	exit 1
-	#fi
-
 	CERTS="$(echo | $KEYTOOL -list -v -keystore "$KEYSTORE" 2>&1 | grep Alias | awk '{print $3}')"
 
 	while read ALIAS
